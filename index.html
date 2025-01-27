@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="none">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>Loading...</title>
+    <style>
+      :root {
+        --color: #ffffffd9;
+        --background: #0c0f1d;
+        --border: #3d3f4c;
+        --opacity-color: #ffffff33;
+        --subcolor: #657ef8;
+        --interact-color: #00C864;
+        --import-error: #ff4444;
+        --thumb-bg: #e1e7ff44;
+        --thumb-border: 4px solid transparent;
+        --thumb-hover-bg: #e1e7ff;
+        --header-btns-bg: #444665;
+      }
+      * {
+        font-family: Helvetica, Arial, sans-serif;
+        user-select: none;
+        -ms-user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -o-user-select: none;
+        -webkit-tap-highlight-color: var(--transparent);
+      }
+      *,
+      *:hover,
+      *:focus,
+      *:checked,
+      *:checked:after,
+      *:disabled,
+      *:disabled:after,
+      *:after,
+      *:before {
+        transition: 0.6s;
+        -webkit-transition: 0.6s;
+        -moz-transition: 0.6s;
+        -o-transition: 0.6s;
+      }
+      *.disabled,
+      *:disabled {
+        opacity: 0.5;
+        cursor: no-drop !important;
+      }
+      *::-webkit-scrollbar {
+        width: 16px;
+        background-color: transparent;
+      }
+      *::-webkit-scrollbar-thumb {
+        border-radius: 9px;
+        border: 4px solid transparent;
+        background-clip: content-box;
+        background-color: var(--thumb-bg);
+        border: var(--thumb-border);
+      }
+      *::-webkit-scrollbar-thumb:hover {
+        background-color: var(--thumb-hover-bg);
+      }
+      body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        letter-spacing: 1px;
+        overflow-x: hidden;
+        color: var(--color);
+        background-color: var(--background);
+      }
+      body::-webkit-scrollbar-thumb {
+        cursor: n-resize !important;
+      }
+      .go-to-top {
+        position: fixed;
+        left: 10px;
+        bottom: 10px;
+        margin: 0;
+        padding-top: 3px;
+        height: 30px;
+        width: 30px;
+        text-align: center;
+        float: right;
+        display: none;
+        white-space: nowrap;
+        font-size: 15px;
+        cursor: pointer;
+        background: var(--header-btns-bg);
+      }
+      .go-to-top::after {
+        content: '⌂';
+        width: 100%;
+        height: 100%;
+      }
+      img,
+      img:hover,
+      img:focus {
+        margin: 5px;
+      }
+      img.sticker {
+        background-color: var(--opacity-color);
+        width: 70px;
+        height: 70px;
+      }
+      .sticker-long-long {
+        width: 240px !important;
+      }
+      .playerslist,
+      .playerslist-stickers {
+        height: auto;
+        white-space: nowrap;
+        width: 100%;
+        font-size: auto;
+        display: flex;
+        flex-wrap: nowrap;
+        margin: 0px;
+        background: transparent;
+      }
+      .playerslist-stickers {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+      .playerslist button,
+      .playerslist-stickers button {
+        padding: 0px 4px;
+        margin: 0px;
+        border-radius: 0px;
+        width: 100%;
+        height: 32px;
+        font-weight: bold;
+        cursor: pointer;
+        color: var(--color);
+        background: var(--background);
+        border: solid 2px var(--border);
+      }
+      .playerslist button:hover,
+      .playerslist-stickers button:hover {
+        color: var(--subcolor);
+        background: var(--border);
+      }
+      .playerslist button.active,
+      .playerslist-stickers button.active {
+        color: var(--interact-color) !important;
+        background: var(--border) !important;
+        border: solid 2px var(--border) !important;
+      }
+      .tab-content,
+      .tab-content-stickers {
+        padding: 0px;
+        border: none;
+        display: none;
+        background: transparent;
+        height: auto;
+        width: 100%;
+      }
+      .tab-content-stickers {
+        padding: 12px 12px 12px 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="playerslist">
+      <button class="tablinks" onclick="openPlayer(event, 'a');" id="defaultOpenType">Stickers</button>
+      <button class="tablinks" onclick="return false;//openPlayer(event, 'b');" id="videoOpen" disabled>Avatars</button>
+      <button class="tablinks" onclick="return false;//openPlayer(event, 'c');" id="imageOpen" disabled>Wallpapers</button>
+    </div>
+    <hr>
+    <div id="a" class="tab-content">
+      <div class="playerslist-stickers">
+        <button class="tablinks-stickers" onclick="openSticker(event, 'aa');">General</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'ab');">Emoji</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'ac');">Other</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'ad');">Cyrus</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'ae');">Iori</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'af');">Ivan</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'ag');">Jaka</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'ah');">Jiu Chong</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'ai');">Joanna</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'aj');">Kikina</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'ak');">Kizuna AI</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'al');">Lillian</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'am');">Mila</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'an');">Mobius</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'ao');">Nighthalk</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'ap');">Ning</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'aq');">Norma</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'ar');">Opal</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'as');">Purity</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'at');">R.E.D</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'au');">Riko</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'av');">Rom</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'aw');">Serena</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'ax');">Shin</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'ay');">Silver Deakon</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'az');">Vanesa</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'ba');">Villar</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'bb');">Vita</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'bc');">Yutong</button>
+        <button class="tablinks-stickers" onclick="openSticker(event, 'bd');">Zoe</button>
+      </div>
+      <div id="aa" class="tab-content-stickers">
+        <img class="sticker" src="index_data/General/0.png">
+        <img class="sticker" src="index_data/General/1.png">
+        <img class="sticker" src="index_data/General/5.png">
+        <img class="sticker" src="index_data/General/00007510.png">
+        <img class="sticker" src="index_data/General/2.png">
+        <img class="sticker" src="index_data/General/3.png">
+        <img class="sticker" src="index_data/General/4.png">
+        <img class="sticker" src="index_data/General/00007783.png">
+        <img class="sticker" src="index_data/General/00000343.png">
+        <img class="sticker" src="index_data/General/00002942.png">
+        <img class="sticker" src="index_data/General/00005422.png">
+        <img class="sticker" src="index_data/General/00016067.png">
+        <img class="sticker" src="index_data/General/00002538.png">
+        <img class="sticker" src="index_data/General/00006854.png">
+        <img class="sticker" src="index_data/General/00012041.png">
+        <img class="sticker" src="index_data/General/00017863.png">
+      </div>
+      <div id="ab" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Emoji/00000476.png">
+        <img class="sticker" src="index_data/Emoji/00001409.png">
+        <img class="sticker" src="index_data/Emoji/00007233.png">
+        <img class="sticker" src="index_data/Emoji/00009049.png">
+        <img class="sticker" src="index_data/Emoji/00009411.png">
+        <img class="sticker" src="index_data/Emoji/00013383.png">
+        <img class="sticker" src="index_data/Emoji/00013852.png">
+        <img class="sticker" src="index_data/Emoji/00000909.png">
+        <img class="sticker" src="index_data/Emoji/00003246.png">
+        <img class="sticker" src="index_data/Emoji/00001547.png">
+        <img class="sticker" src="index_data/Emoji/00003196.png">
+        <img class="sticker" src="index_data/Emoji/00007568.png">
+        <img class="sticker" src="index_data/Emoji/00010662.png">
+        <img class="sticker" src="index_data/Emoji/00010846.png">
+        <img class="sticker" src="index_data/Emoji/00012422.png">
+        <img class="sticker" src="index_data/Emoji/00013988.png">
+        <img class="sticker" src="index_data/Emoji/00004164.png">
+        <img class="sticker" src="index_data/Emoji/00004846.png">
+        <img class="sticker" src="index_data/Emoji/00005851.png">
+        <img class="sticker" src="index_data/Emoji/00008520.png">
+        <img class="sticker" src="index_data/Emoji/00004786.png">
+        <img class="sticker" src="index_data/Emoji/00004852.png">
+        <img class="sticker" src="index_data/Emoji/00011868.png">
+        <img class="sticker" src="index_data/Emoji/00015018.png">
+        <img class="sticker" src="index_data/Emoji/00017456.png">
+        <img class="sticker" src="index_data/Emoji/00017637.png">
+        <img class="sticker" src="index_data/Emoji/00018133.png">
+        <img class="sticker" src="index_data/Emoji/00018552.png">
+        <img class="sticker" src="index_data/Emoji/00010428.png">
+        <img class="sticker" src="index_data/Emoji/00010459.png">
+        <img class="sticker" src="index_data/Emoji/00005367.png">
+        <img class="sticker" src="index_data/Emoji/00007056.png">
+        <img class="sticker" src="index_data/Emoji/00007483.png">
+        <img class="sticker" src="index_data/Emoji/00014686.png">
+        <img class="sticker" src="index_data/Emoji/00007194.png">
+        <img class="sticker" src="index_data/Emoji/00007334.png">
+        <img class="sticker" src="index_data/Emoji/00010950.png">
+        <img class="sticker" src="index_data/Emoji/00008405.png">
+        <img class="sticker" src="index_data/Emoji/00010513_0.png">
+        <img class="sticker" src="index_data/Emoji/00012860.png">
+        <img class="sticker" src="index_data/Emoji/00013968.png">
+        <img class="sticker" src="index_data/Emoji/00017150.png">
+        <img class="sticker" src="index_data/Emoji/00013476.png">
+        <img class="sticker" src="index_data/Emoji/00009126.png">
+        <img class="sticker" src="index_data/Emoji/00009918.png">
+        <img class="sticker" src="index_data/Emoji/00011191.png">
+        <img class="sticker" src="index_data/Emoji/00018395.png">
+        <img class="sticker" src="index_data/Emoji/00009602.png">
+        <img class="sticker" src="index_data/Emoji/00005396.png">
+        <img class="sticker" src="index_data/Emoji/00004480.png">
+      </div>
+      <div id="ac" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Other/00000175.png">
+        <img class="sticker" src="index_data/Other/00001462.png">
+        <img class="sticker" src="index_data/Other/00009677.png">
+        <img class="sticker" src="index_data/Other/00001567.png">
+        <img class="sticker" src="index_data/Other/00001791.png">
+        <img class="sticker" src="index_data/Other/00004212.png">
+        <img class="sticker" src="index_data/Other/00004441.png">
+        <img class="sticker" src="index_data/Other/00005626.png">
+        <img class="sticker" src="index_data/Other/00005843.png">
+        <img class="sticker" src="index_data/Other/00005940.png">
+        <img class="sticker" src="index_data/Other/00005996.png">
+        <img class="sticker" src="index_data/Other/00006012.png">
+        <img class="sticker" src="index_data/Other/00006017.png">
+        <img class="sticker" src="index_data/Other/00006022.png">
+        <img class="sticker" src="index_data/Other/00006512.png">
+        <img class="sticker" src="index_data/Other/00006534.png">
+        <img class="sticker" src="index_data/Other/00006535.png">
+        <img class="sticker" src="index_data/Other/00006726.png">
+        <img class="sticker" src="index_data/Other/00006847.png">
+        <img class="sticker" src="index_data/Other/00007011.png">
+        <img class="sticker" src="index_data/Other/00007071.png">
+        <img class="sticker" src="index_data/Other/00007200.png">
+        <img class="sticker" src="index_data/Other/00007496.png">
+        <img class="sticker" src="index_data/Other/00007911.png">
+        <img class="sticker" src="index_data/Other/00007930.png">
+        <img class="sticker" src="index_data/Other/00007975.png">
+        <img class="sticker" src="index_data/Other/00008083_0.png">
+        <img class="sticker" src="index_data/Other/00008114.png">
+        <img class="sticker" src="index_data/Other/00008419.png">
+        <img class="sticker" src="index_data/Other/00008513.png">
+        <img class="sticker" src="index_data/Other/00008951.png">
+        <img class="sticker" src="index_data/Other/00009099.png">
+        <img class="sticker" src="index_data/Other/00009141.png">
+        <img class="sticker" src="index_data/Other/00009145.png">
+        <img class="sticker" src="index_data/Other/00009330.png">
+        <img class="sticker" src="index_data/Other/00009377.png">
+        <img class="sticker" src="index_data/Other/00009614.png">
+        <img class="sticker" src="index_data/Other/00009650.png">
+        <img class="sticker" src="index_data/Other/00009796.png">
+        <img class="sticker" src="index_data/Other/00009817.png">
+        <img class="sticker" src="index_data/Other/00010033_0.png">
+        <img class="sticker" src="index_data/Other/00010092.png">
+        <img class="sticker" src="index_data/Other/00010169.png">
+        <img class="sticker" src="index_data/Other/00010361.png">
+        <img class="sticker" src="index_data/Other/00010660.png">
+        <img class="sticker" src="index_data/Other/00010667.png">
+        <img class="sticker" src="index_data/Other/00010786.png">
+        <img class="sticker" src="index_data/Other/00010810.png">
+        <img class="sticker" src="index_data/Other/00011062.png">
+        <img class="sticker" src="index_data/Other/00011523_0.png">
+        <img class="sticker" src="index_data/Other/00011995.png">
+        <img class="sticker" src="index_data/Other/00012138.png">
+        <img class="sticker" src="index_data/Other/00012205.png">
+        <img class="sticker" src="index_data/Other/00012212.png">
+        <img class="sticker" src="index_data/Other/00012388.png">
+        <img class="sticker" src="index_data/Other/00012561.png">
+        <img class="sticker" src="index_data/Other/00013046.png">
+        <img class="sticker" src="index_data/Other/00013255.png">
+        <img class="sticker" src="index_data/Other/00013584.png">
+        <img class="sticker" src="index_data/Other/00013888.png">
+        <img class="sticker" src="index_data/Other/00014461.png">
+        <img class="sticker" src="index_data/Other/00014491.png">
+        <img class="sticker" src="index_data/Other/00014979.png">
+        <img class="sticker" src="index_data/Other/00015242.png">
+        <img class="sticker" src="index_data/Other/00015663.png">
+        <img class="sticker" src="index_data/Other/00015730.png">
+        <img class="sticker" src="index_data/Other/00016323.png">
+        <img class="sticker" src="index_data/Other/00016374.png">
+        <img class="sticker" src="index_data/Other/00016546.png">
+        <img class="sticker" src="index_data/Other/00016612.png">
+        <img class="sticker" src="index_data/Other/00016623.png">
+        <img class="sticker" src="index_data/Other/00016625.png">
+        <img class="sticker" src="index_data/Other/00016635.png">
+        <img class="sticker" src="index_data/Other/00016653.png">
+        <img class="sticker" src="index_data/Other/00016682.png">
+        <img class="sticker" src="index_data/Other/00016756.png">
+        <img class="sticker sticker-long-long" src="index_data/Other/00017576.png">
+        <img class="sticker" src="index_data/Other/00017817.png">
+        <img class="sticker" src="index_data/Other/00017842.png">
+        <img class="sticker" src="index_data/Other/00017871.png">
+        <img class="sticker" src="index_data/Other/00017982.png">
+        <img class="sticker" src="index_data/Other/00018147.png">
+        <img class="sticker" src="index_data/Other/00018322.png">
+        <img class="sticker" src="index_data/Other/00020918.png">
+        <img class="sticker" src="index_data/Other/00021620.png">
+        <img class="sticker" src="index_data/Other/00005990.png">
+      </div>
+      <div id="ad" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Cyrus/00003334.png">
+        <img class="sticker" src="index_data/Cyrus/00004371.png">
+        <img class="sticker" src="index_data/Cyrus/00009653.png">
+        <img class="sticker" src="index_data/Cyrus/00007502.png">
+        <img class="sticker" src="index_data/Cyrus/00008742.png">
+        <img class="sticker" src="index_data/Cyrus/00003534.png">
+      </div>
+      <div id="ae" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Iori/00005268.png">
+        <img class="sticker" src="index_data/Iori/00005653_0.png">
+        <img class="sticker" src="index_data/Iori/00006386.png">
+        <img class="sticker" src="index_data/Iori/00008106.png">
+        <img class="sticker" src="index_data/Iori/00008532.png">
+        <img class="sticker" src="index_data/Iori/00008880.png">
+        <img class="sticker" src="index_data/Iori/00014563.png">
+        <img class="sticker" src="index_data/Iori/00014974.png">
+        <img class="sticker" src="index_data/Iori/00016058.png">
+        <img class="sticker" src="index_data/Iori/00016405.png">
+        <img class="sticker" src="index_data/Iori/00016808.png">
+        <img class="sticker" src="index_data/Iori/00017074_0.png">
+      </div>
+      <div id="af" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Ivan/00000906.png">
+        <img class="sticker" src="index_data/Ivan/00001085.png">
+        <img class="sticker" src="index_data/Ivan/00002335.png">
+        <img class="sticker" src="index_data/Ivan/00003386.png">
+        <img class="sticker" src="index_data/Ivan/00004379.png">
+        <img class="sticker" src="index_data/Ivan/00005912.png">
+        <img class="sticker" src="index_data/Ivan/00007596.png">
+        <img class="sticker" src="index_data/Ivan/00007794.png">
+        <img class="sticker" src="index_data/Ivan/00007921.png">
+        <img class="sticker" src="index_data/Ivan/00010201.png">
+        <img class="sticker" src="index_data/Ivan/00010953.png">
+        <img class="sticker" src="index_data/Ivan/00012636.png">
+        <img class="sticker" src="index_data/Ivan/00014512.png">
+        <img class="sticker" src="index_data/Ivan/00015374.png">
+        <img class="sticker" src="index_data/Ivan/00018412.png">
+        <img class="sticker" src="index_data/Ivan/00018643.png">
+      </div>
+      <div id="ag" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Jaka/00006627.png">
+        <img class="sticker" src="index_data/Jaka/00009403.png">
+      </div>
+      <div id="ah" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Jiu/00005529.png">
+        <img class="sticker" src="index_data/Jiu/00014876.png">
+      </div>
+      <div id="ai" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Joanna/00000300.png">
+        <img class="sticker" src="index_data/Joanna/00000640.png">
+        <img class="sticker" src="index_data/Joanna/00001619.png">
+        <img class="sticker" src="index_data/Joanna/00002640.png">
+        <img class="sticker" src="index_data/Joanna/00003786.png">
+        <img class="sticker" src="index_data/Joanna/00005116.png">
+        <img class="sticker" src="index_data/Joanna/00006178.png">
+        <img class="sticker" src="index_data/Joanna/00008137.png">
+        <img class="sticker" src="index_data/Joanna/00008318.png">
+        <img class="sticker" src="index_data/Joanna/00008342.png">
+        <img class="sticker" src="index_data/Joanna/00011294.png">
+        <img class="sticker" src="index_data/Joanna/00012362.png">
+        <img class="sticker" src="index_data/Joanna/00015156.png">
+        <img class="sticker" src="index_data/Joanna/00015399.png">
+        <img class="sticker" src="index_data/Joanna/00015544.png">
+        <img class="sticker" src="index_data/Joanna/00015726.png">
+        <img class="sticker" src="index_data/Joanna/00017983.png">
+      </div>
+      <div id="aj" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Kikina/00002099.png">
+        <img class="sticker" src="index_data/Kikina/00007209.png">
+        <img class="sticker" src="index_data/Kikina/00009546.png">
+        <img class="sticker" src="index_data/Kikina/00010137.png">
+        <img class="sticker" src="index_data/Kikina/00016331.png">
+        <img class="sticker" src="index_data/Kikina/00017552.png">
+      </div>
+      <div id="ak" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Kizuna/00001779.png">
+        <img class="sticker" src="index_data/Kizuna/00006293.png">
+        <img class="sticker" src="index_data/Kizuna/00006912.png">
+        <img class="sticker" src="index_data/Kizuna/00008137_0.png">
+        <img class="sticker" src="index_data/Kizuna/00008391.png">
+        <img class="sticker" src="index_data/Kizuna/00009736.png">
+        <img class="sticker" src="index_data/Kizuna/00009786.png">
+        <img class="sticker" src="index_data/Kizuna/00010462.png">
+        <img class="sticker" src="index_data/Kizuna/00011317.png">
+        <img class="sticker" src="index_data/Kizuna/00013343.png">
+        <img class="sticker" src="index_data/Kizuna/00014581.png">
+        <img class="sticker" src="index_data/Kizuna/00015434.png">
+        <img class="sticker" src="index_data/Kizuna/00016642.png">
+      </div>
+      <div id="al" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Lillian/00006052.png">
+        <img class="sticker" src="index_data/Lillian/00009486.png">
+        <img class="sticker" src="index_data/Lillian/00012859.png">
+      </div>
+      <div id="am" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Mila/00004482.png">
+        <img class="sticker" src="index_data/Mila/00008360.png">
+        <img class="sticker" src="index_data/Mila/00009318.png">
+        <img class="sticker" src="index_data/Mila/00010513.png">
+        <img class="sticker" src="index_data/Mila/00011165.png">
+        <img class="sticker" src="index_data/Mila/00014364.png">
+        <img class="sticker" src="index_data/Mila/00015024.png">
+        <img class="sticker" src="index_data/Mila/00015301.png">
+        <img class="sticker" src="index_data/Mila/00015405.png">
+      </div>
+      <div id="an" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Mobius/00003053.png">
+      </div>
+      <div id="ao" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Nighthalk/00011633.png">
+      </div>
+      <div id="ap" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Ning/00000453.png">
+        <img class="sticker" src="index_data/Ning/00001237.png">
+        <img class="sticker" src="index_data/Ning/00001288.png">
+        <img class="sticker" src="index_data/Ning/00002337.png">
+        <img class="sticker" src="index_data/Ning/00002988.png">
+        <img class="sticker" src="index_data/Ning/00003101.png">
+        <img class="sticker" src="index_data/Ning/00003989.png">
+        <img class="sticker" src="index_data/Ning/00005508.png">
+        <img class="sticker" src="index_data/Ning/00005603.png">
+        <img class="sticker" src="index_data/Ning/00005696.png">
+        <img class="sticker" src="index_data/Ning/00005921.png">
+        <img class="sticker" src="index_data/Ning/00005967.png">
+        <img class="sticker" src="index_data/Ning/00005998.png">
+        <img class="sticker" src="index_data/Ning/00006221.png">
+        <img class="sticker" src="index_data/Ning/00006393.png">
+        <img class="sticker" src="index_data/Ning/00006577.png">
+        <img class="sticker" src="index_data/Ning/00006794.png">
+        <img class="sticker" src="index_data/Ning/00009749.png">
+        <img class="sticker" src="index_data/Ning/00010000.png">
+        <img class="sticker" src="index_data/Ning/00011171.png">
+        <img class="sticker" src="index_data/Ning/00011375.png">
+        <img class="sticker" src="index_data/Ning/00012392.png">
+        <img class="sticker" src="index_data/Ning/00012576.png">
+        <img class="sticker" src="index_data/Ning/00012952.png">
+        <img class="sticker" src="index_data/Ning/00013938.png">
+        <img class="sticker" src="index_data/Ning/00015961.png">
+        <img class="sticker" src="index_data/Ning/00016462.png">
+        <img class="sticker" src="index_data/Ning/00016491.png">
+        <img class="sticker" src="index_data/Ning/00017640.png">
+      </div>
+      <div id="aq" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Norma/00010668.png">
+      </div>
+      <div id="ar" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Opal/00004977.png">
+        <img class="sticker" src="index_data/Opal/00007315_0.png">
+        <img class="sticker" src="index_data/Opal/00012520.png">
+      </div>
+      <div id="as" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Purity/00010414.png">
+      </div>
+      <div id="at" class="tab-content-stickers">
+        <img class="sticker" src="index_data/RED/00015950.png">
+      </div>
+      <div id="au" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Riko/0.png">
+        <img class="sticker" src="index_data/Riko/1.png">
+        <img class="sticker" src="index_data/Riko/2.png">
+        <img class="sticker" src="index_data/Riko/3.png">
+        <img class="sticker" src="index_data/Riko/4.png">
+        <img class="sticker" src="index_data/Riko/5.png">
+        <img class="sticker" src="index_data/Riko/6.png">
+        <img class="sticker" src="index_data/Riko/7.png">
+        <img class="sticker" src="index_data/Riko/8.png">
+        <img class="sticker" src="index_data/Riko/9.png">
+        <img class="sticker" src="index_data/Riko/10.png">
+        <img class="sticker" src="index_data/Riko/11.png">
+        <img class="sticker" src="index_data/Riko/12.png">
+        <img class="sticker" src="index_data/Riko/13.png">
+        <img class="sticker" src="index_data/Riko/14.png">
+        <img class="sticker" src="index_data/Riko/15.png">
+        <img class="sticker" src="index_data/Riko/16.png">
+        <img class="sticker" src="index_data/Riko/17.png">
+        <img class="sticker" src="index_data/Riko/18.png">
+        <img class="sticker" src="index_data/Riko/00000195.png">
+        <img class="sticker" src="index_data/Riko/00000337.png">
+        <img class="sticker" src="index_data/Riko/00000388.png">
+        <img class="sticker" src="index_data/Riko/00001541.png">
+        <img class="sticker" src="index_data/Riko/00002580.png">
+        <img class="sticker" src="index_data/Riko/00003152.png">
+        <img class="sticker" src="index_data/Riko/00004207.png">
+        <img class="sticker" src="index_data/Riko/00006318.png">
+        <img class="sticker" src="index_data/Riko/00006394.png">
+        <img class="sticker" src="index_data/Riko/00006583.png">
+        <img class="sticker" src="index_data/Riko/00007739_0.png">
+        <img class="sticker" src="index_data/Riko/00008732.png">
+        <img class="sticker" src="index_data/Riko/00008763.png">
+        <img class="sticker" src="index_data/Riko/00009196.png">
+        <img class="sticker" src="index_data/Riko/00013408.png">
+        <img class="sticker" src="index_data/Riko/00014116.png">
+        <img class="sticker" src="index_data/Riko/00016157.png">
+        <img class="sticker" src="index_data/Riko/00016739.png">
+        <img class="sticker" src="index_data/Riko/00018274.png">
+        <img class="sticker" src="index_data/Riko/00018411.png">
+      </div>
+      <div id="av" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Rom/00000835.png">
+        <img class="sticker" src="index_data/Rom/00001919.png">
+        <img class="sticker" src="index_data/Rom/00002563.png">
+        <img class="sticker" src="index_data/Rom/00003039.png">
+        <img class="sticker" src="index_data/Rom/00003129.png">
+        <img class="sticker" src="index_data/Rom/00003198.png">
+        <img class="sticker" src="index_data/Rom/00003732.png">
+        <img class="sticker" src="index_data/Rom/00004091.png">
+        <img class="sticker" src="index_data/Rom/00005316.png">
+        <img class="sticker" src="index_data/Rom/00005356.png">
+        <img class="sticker" src="index_data/Rom/00006186.png">
+        <img class="sticker" src="index_data/Rom/00007051.png">
+        <img class="sticker" src="index_data/Rom/00008083.png">
+        <img class="sticker" src="index_data/Rom/00009011.png">
+        <img class="sticker" src="index_data/Rom/00011334.png">
+        <img class="sticker" src="index_data/Rom/00011508.png">
+        <img class="sticker" src="index_data/Rom/00013420.png">
+        <img class="sticker" src="index_data/Rom/00013605.png">
+        <img class="sticker" src="index_data/Rom/00013669.png">
+        <img class="sticker" src="index_data/Rom/00014385.png">
+        <img class="sticker" src="index_data/Rom/00014703.png">
+        <img class="sticker" src="index_data/Rom/00015075.png">
+        <img class="sticker" src="index_data/Rom/00015136.png">
+        <img class="sticker" src="index_data/Rom/00015734.png">
+        <img class="sticker" src="index_data/Rom/00016536.png">
+        <img class="sticker" src="index_data/Rom/00016918.png">
+        <img class="sticker" src="index_data/Rom/00018762.png">
+      </div>
+      <div id="aw" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Serena/00000295.png">
+        <img class="sticker" src="index_data/Serena/00009944.png">
+        <img class="sticker" src="index_data/Serena/00016404.png">
+        <img class="sticker" src="index_data/Serena/00001171.png">
+        <img class="sticker" src="index_data/Serena/00001922.png">
+        <img class="sticker" src="index_data/Serena/00007490.png">
+        <img class="sticker" src="index_data/Serena/00007622.png">
+        <img class="sticker" src="index_data/Serena/00007701.png">
+      </div>
+      <div id="ax" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Shin/00005232.png">
+      </div>
+      <div id="ay" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Silver/00005085.png">
+        <img class="sticker" src="index_data/Silver/00005488.png">
+      </div>
+      <div id="az" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Vanesa/00001815.png">
+        <img class="sticker" src="index_data/Vanesa/00001983.png">
+        <img class="sticker" src="index_data/Vanesa/00007942.png">
+        <img class="sticker" src="index_data/Vanesa/00009543.png">
+        <img class="sticker" src="index_data/Vanesa/00010275.png">
+      </div>
+      <div id="ba" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Villar/00002462.png">
+      </div>
+      <div id="bb" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Vita/00002267.png">
+        <img class="sticker" src="index_data/Vita/00006207.png">
+        <img class="sticker" src="index_data/Vita/00008378.png">
+        <img class="sticker" src="index_data/Vita/00009100.png">
+        <img class="sticker" src="index_data/Vita/00010264.png">
+        <img class="sticker" src="index_data/Vita/00019389.png">
+      </div>
+      <div id="bc" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Yutong/00009835.png">
+        <img class="sticker" src="index_data/Yutong/00011742.png">
+        <img class="sticker" src="index_data/Yutong/00016606.png">
+      </div>
+      <div id="bd" class="tab-content-stickers">
+        <img class="sticker" src="index_data/Zoe/00015291.png">
+      </div>
+    </div>
+    <div id="b" class="tab-content"></div>
+    <div id="c" class="tab-content"></div>
+    <script>
+      function openPlayer(evt, playerName) {
+        var ti, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (ti = 0; ti < tabcontent.length; ti++) {
+            tabcontent[ti].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (ti = 0; ti < tablinks.length; ti++) {
+            tablinks[ti].className = tablinks[ti].className.replace(" active", "");
+        }
+        document.getElementById(playerName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+      document.getElementById("defaultOpenType").click();
+    </script>
+    <script>
+      function openSticker(evt, stickerName) {
+        var ti, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content-stickers");
+        for (ti = 0; ti < tabcontent.length; ti++) {
+            tabcontent[ti].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks-stickers");
+        for (ti = 0; ti < tablinks.length; ti++) {
+            tablinks[ti].className = tablinks[ti].className.replace(" active", "");
+        }
+        document.getElementById(stickerName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+    </script>
+  </body>
+</html>
