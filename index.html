@@ -115,6 +115,11 @@
         transform: scale(1);
         margin: 0;
       }
+      img.avatar {
+        background-color: var(--opacity-color);
+        width: 70px;
+        height: 70px;
+      }
       .img-frame {
         margin: 2.5px 1%;
         padding: 0;
@@ -133,7 +138,8 @@
         width: 240px !important;
       }
       .playerslist,
-      .playerslist-stickers {
+      .playerslist-stickers,
+      .playerslist-avatars {
         height: auto;
         white-space: nowrap;
         width: 100%;
@@ -143,12 +149,14 @@
         margin: 0px;
         background: transparent;
       }
-      .playerslist-stickers {
+      .playerslist-stickers,
+      .playerslist-avatars {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
       }
       .playerslist button,
-      .playerslist-stickers button {
+      .playerslist-stickers button,
+      .playerslist-avatars button {
         padding: 0px 4px;
         margin: 0px;
         border-radius: 0px;
@@ -161,18 +169,21 @@
         border: solid 2px var(--border);
       }
       .playerslist button:hover,
-      .playerslist-stickers button:hover {
+      .playerslist-stickers button:hover,
+      .playerslist-avatars button:hover {
         color: var(--subcolor);
         background: var(--border);
       }
       .playerslist button.active,
-      .playerslist-stickers button.active {
+      .playerslist-stickers button.active,
+      .playerslist-avatars button.active {
         color: var(--interact-color) !important;
         background: var(--border) !important;
         border: solid 2px var(--border) !important;
       }
       .tab-content,
-      .tab-content-stickers {
+      .tab-content-stickers,
+      .tab-content-avatars {
         padding: 0px;
         border: none;
         display: none;
@@ -180,7 +191,8 @@
         height: auto;
         width: 100%;
       }
-      .tab-content-stickers {
+      .tab-content-stickers,
+      .tab-content-avatars {
         padding: 12px 12px 12px 12px;
       }
       .image-display, .iframe-display {
@@ -270,7 +282,7 @@
   <body>
     <div class="playerslist">
       <button class="tablinks" onclick="openPlayer(event, 'a');" id="defaultOpenType">Stickers</button>
-      <button class="tablinks" onclick="return false;//openPlayer(event, 'b');" id="videoOpen" disabled>Avatars</button>
+      <button class="tablinks" onclick="openPlayer(event, 'b');" id="videoOpen">Avatars</button>
       <button class="tablinks" onclick="openPlayer(event, 'c');" id="imageOpen">Wallpapers</button>
     </div>
     <hr>
@@ -736,7 +748,189 @@
         <img onclick="showImage(this);" class="sticker" src="index_data/Zoe/00015291.png">
       </div>
     </div>
-    <div id="b" class="tab-content"></div>
+    <div id="b" class="tab-content">
+      <div class="playerslist-avatars">
+        <button class="tablinks-avatars" onclick="openAvatar(event, 'aaa');">Pilot</button>
+        <button class="tablinks-avatars" onclick="openAvatar(event, 'aab');">Mecha</button>
+        <button class="tablinks-avatars" onclick="openAvatar(event, 'aac');">Animated</button>
+        <button class="tablinks-avatars" onclick="openAvatar(event, 'aad');">Other</button>
+      </div>
+      <div id="aaa" class="tab-content-avatars">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Belladonna.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Cyrus.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Iori.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Ivan.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Jaka.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Jiu Chong.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Joanna.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Kikina.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Kizuna AI.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Lillian.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Mila.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Mobius.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Nighthalk.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Ning.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Norma.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Opal.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Purity.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/RED.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Rom.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Serena.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Shin.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Silver Deacon.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Vanessa.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Villar.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Vita.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Yutong.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Bound/Zoe.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00000208.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00000416.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00000437.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00000497.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00001456.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00001716.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00001969.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00001984.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00002097.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00002103.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00002182.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00002725.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00002973.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00003263.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00003389.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00003822.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00004460.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00004612.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00004869.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00005015.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00005136.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00005757.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00006497.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00006784.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00007196.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00008941.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00009049.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00010760.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00011387.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00011680.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00012228.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00012302.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00012487.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00012658.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00013132.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00013460.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00013645.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00013718.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00013934.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00014130.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00014152.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00014292.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00015008.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00015192.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00015216.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00015478.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00015923.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00015975.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00016777.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00017140.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00017173.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00017360.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00017840.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00018442.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00018467.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00020592.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00020894.png">
+      </div>
+      <div id="aab" class="tab-content-avatars">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00000085.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00000440.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00000673.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00001268.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00001588.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00003127.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00003142.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00003533.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00005134.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00007114.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00007799.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00008246.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00008941_0.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00008983.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00009275.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00010597.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00011437.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00011557.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00011882.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00011949.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00012505.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00013061.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00014488.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00015197.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00017020.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00017167.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00017925.png">
+      </div>
+      <div id="aac" class="tab-content-avatars">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/a.gif">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/b.gif">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/c.gif">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/d.gif">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/e.gif">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/f.gif">
+      </div>
+      <div id="aad" class="tab-content-avatars">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00000121.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00001026.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00001279.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00001861.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00001956.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00002293.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00002406.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00002436.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00003074.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00003219.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00003326.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00003387.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00004212.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00004229.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00004555.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00005371.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00005575.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00005717.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00005892.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00006174.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00006804.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00006848.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00006919.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00007509.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00007777.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00008090.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00008155.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00008686.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00008884.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00008913.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00009033.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00009192.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00010058.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00010202.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00010534.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00011175.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00012529.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00013412.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00013677.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00013778.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00014641.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00014667.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00014874.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00015124.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00016141.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00016603.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00017368.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00018033.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00018996.png">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00020498.png">
+      </div>
+    </div>
     <div id="c" class="tab-content"></div>
     <script>
       const wallpapersNames = [
@@ -824,6 +1018,21 @@
             tablinks[ti].className = tablinks[ti].className.replace(" active", "");
         }
         document.getElementById(stickerName).style.display = "block";
+        evt.currentTarget.className += " active";
+      }
+    </script>
+    <script>
+      function openAvatar(evt, avatarName) {
+        var ti, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content-avatars");
+        for (ti = 0; ti < tabcontent.length; ti++) {
+            tabcontent[ti].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks-avatars");
+        for (ti = 0; ti < tablinks.length; ti++) {
+            tablinks[ti].className = tablinks[ti].className.replace(" active", "");
+        }
+        document.getElementById(avatarName).style.display = "block";
         evt.currentTarget.className += " active";
       }
     </script>
