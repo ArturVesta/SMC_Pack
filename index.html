@@ -1055,13 +1055,14 @@
       copyButton.addEventListener('click', async () => {
         const image = document.getElementById("expandedImg");
         var ValidExtensions = new Array(".png",".gif","jpg");
+        var FileExtension=image.src;
         FileExtension = FileExtension.substring(FileExtension.lastIndexOf('.'));
           try {
             const blob = await fetch(image.src).then(r => r.blob());
             if (ValidExtensions.lastIndexOf(FileExtension)<0) {
               await navigator.clipboard.write([
                 new ClipboardItem({
-                    FileExtension: blob
+                  FileExtension: blob
                 })
               ]);
             }
