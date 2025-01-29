@@ -1060,21 +1060,21 @@
         const image = document.getElementById("expandedImg");
           try {
             const blob = await fetch(image.src).then(r => r.blob());
-            if (image.lastIndexOf(".") === ".png") {
+            if (image.lastIndexOf === ".png") {
               await navigator.clipboard.write([
                 new ClipboardItem({
                   "image/png": blob
                 })
               ]);
             }else
-            if (image.lastIndexOf(".") === ".jpg") {
+            if (image.lastIndexOf === ".jpg") {
               await navigator.clipboard.write([
                 new ClipboardItem({
                   "image/jpg": blob
                 })
               ]);
             }else
-            if (image.lastIndexOf(".") === ".gif") {
+            if (image.lastIndexOf === ".gif") {
               await navigator.clipboard.write([
                 new ClipboardItem({
                   "image/gif": blob
