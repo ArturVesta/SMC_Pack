@@ -250,13 +250,14 @@
         left: 0;
         right: 0;
         height: auto;
+        display: flex;
       }
       .previwe-image-conltoller button {
         padding: 14px 16px;
         margin: 5px auto;
         outline: none;
         width: 50%;
-        display: inline-block;
+        display: inline;
         font-weight: bold;
         cursor: pointer;
         border-radius: 10px;
@@ -276,6 +277,9 @@
           border-radius: 0;
           border-left: none;
           border-right: none;
+        }
+        .previwe-image-conltoller {
+          display: inline;
         }
         .previwe-image-conltoller button {
           width: 95%;
@@ -1054,15 +1058,26 @@
       const copyButton = document.getElementById('copyButton');
       copyButton.addEventListener('click', async () => {
         const image = document.getElementById("expandedImg");
-        var ValidExtensions = new Array(".png",".gif","jpg");
-        var FileExtension=image.src;
-        FileExtension = FileExtension.substring(FileExtension.lastIndexOf('.'));
           try {
             const blob = await fetch(image.src).then(r => r.blob());
-            if (ValidExtensions.lastIndexOf(FileExtension)<0) {
+            if (image.lastIndexOf(".") === ".png") {
               await navigator.clipboard.write([
                 new ClipboardItem({
-                  FileExtension: blob
+                  "image/png": blob
+                })
+              ]);
+            }else
+            if (image.lastIndexOf(".") === ".jpg") {
+              await navigator.clipboard.write([
+                new ClipboardItem({
+                  "image/jpg": blob
+                })
+              ]);
+            }else
+            if (image.lastIndexOf(".") === ".gif") {
+              await navigator.clipboard.write([
+                new ClipboardItem({
+                  "image/gif": blob
                 })
               ]);
             }
