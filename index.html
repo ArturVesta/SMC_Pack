@@ -877,6 +877,10 @@
         <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/d.gif">
         <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/e.gif">
         <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/f.gif">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/g.gif">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/h.gif">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/i.gif">
+        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/j.gif">
       </div>
       <div id="aad" class="tab-content-avatars">
         <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00000121.png">
@@ -976,11 +980,15 @@
       </div>
     </div>
     <script>
+      // Locator
+      const ex0 = document.getElementById("expandedImg").src;
+      const ex1 = document.getElementById("expandedImg");
+    </script>
+    <script>
       const nums = ["0","1","2","3","4","5","6","7","8","9"];
       document.getElementById("downButton").addEventListener('click', function() {
-        const srcFrom = document.getElementById("expandedImg").src;
         const link = document.createElement('a');
-        link.href = srcFrom;
+        link.href = ex0;
         link.download = nums[Math.floor(Math.random() * nums.length)] + nums[Math.floor(Math.random() * nums.length)] + nums[Math.floor(Math.random() * nums.length)] + ".png";
         link.style.display = "none";
         link.target = "_blank";
@@ -1038,40 +1046,17 @@
     </script>
     <!-- Beta Scripts -->
     <script>
-      const images = document.getElementById('expandedImg');
-      const button = document.getElementById('copyButton');
-      button.addEventListener('click', () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = image.width;
-        canvas.height = image.height;
-        ctx.drawImage(image, 0, 0);
-        const dataURL = canvas.toDataURL();
-        const tempInput = document.createElement('input');
-        tempInput.value = dataURL;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand('copy');
-        document.body.removeChild(tempInput);
-        alert('Image copied to clipboard!');
-      });
     </script>
     <script>
       function showImage(imgs) {
-        var expandImg = document.getElementById("expandedImg");
         var imagepreviewbase = document.getElementById("imagepreviewbase");
-        expandImg.src = imgs.src;
+        ex1.src = imgs.src;
         imagepreviewbase.style.left = "0%";
         document.body.style.overflowY = "hidden";
         setTimeout(() => {
           imagepreviewbase.style.backgroundColor = "var(--opacity-bg)";
           imagepreviewbase.style.backdropFilter = "blur(5px)";
         },340);
-      expandImg.addEventListener('contextmenu', evt => {
-        evt.preventDefault();
-        return blockImagesContext();
-      });
-        expandImg.ondragstart = function() {return false;};
       };
       function closeImgPreview() {
         imagepreviewbase.style.backgroundColor = "var(--transparent)";
