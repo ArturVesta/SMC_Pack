@@ -1056,14 +1056,15 @@
         const image = document.getElementById("expandedImg");
         var ValidExtensions = new Array(".png",".gif","jpg");
         FileExtension = FileExtension.substring(FileExtension.lastIndexOf('.'));
-        if (ValidExtensions.lastIndexOf(FileExtension)<0) {
           try {
             const blob = await fetch(image.src).then(r => r.blob());
-            await navigator.clipboard.write([
-              new ClipboardItem({
-                FileExtension: blob
-              })
-            ]);
+            if (ValidExtensions.lastIndexOf(FileExtension)<0) {
+              await navigator.clipboard.write([
+                new ClipboardItem({
+                    FileExtension: blob
+                })
+              ]);
+            }
             copyButton.textContent = 'Copied!';
             setTimeout(() => {
               copyButton.textContent = 'Copy Image';
@@ -1074,7 +1075,6 @@
               copyButton.textContent = 'Copy Image';
             }, 5000);
           }
-        }
       });
     </script>
     <script>
