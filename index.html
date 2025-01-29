@@ -1062,7 +1062,7 @@
             const blob = await fetch(image.src).then(r => r.blob());
             await navigator.clipboard.write([
               new ClipboardItem({
-                "image/png image/gif image/jpg": blob
+                "image/*": blob
               })
             ]);
             copyButton.textContent = 'Copied!';
