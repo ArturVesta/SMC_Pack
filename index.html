@@ -255,11 +255,12 @@
         padding: 14px 16px;
         margin: 5px auto;
         outline: none;
-        width: 95%;
-        display: block;
+        width: 50%;
+        display: inline-block;
         font-weight: bold;
         cursor: pointer;
         border-radius: 10px;
+        float: left;
         color: var(--color);
         background: var(--background);
         border: solid 2px var(--border);
@@ -275,6 +276,11 @@
           border-radius: 0;
           border-left: none;
           border-right: none;
+        }
+        .previwe-image-conltoller button {
+          width: 95%;
+          display: block;
+          float: none;
         }
       }
     </style>
@@ -1044,8 +1050,28 @@
         evt.currentTarget.className += " active";
       }
     </script>
-    <!-- Beta Scripts -->
     <script>
+      const copyButton = document.getElementById('copyButton');
+      copyButton.addEventListener('click', async () => {
+        const image = document.getElementById("expandedImg");
+        try {
+          const blob = await fetch(image.src).then(r => r.blob());
+          await navigator.clipboard.write([
+            new ClipboardItem({
+              'image/png': blob
+            })
+          ]);
+          copyButton.textContent = 'Copied!';
+          setTimeout(() => {
+            copyButton.textContent = 'Copy Image';
+          }, 1000);
+        } catch (err) {
+          copyButton.textContent = 'Error!, Failed to copy: ' + err;
+          setTimeout(() => {
+            copyButton.textContent = 'Copy Image';
+          }, 5000);
+        }
+      });
     </script>
     <script>
       function showImage(imgs) {
@@ -1054,12 +1080,12 @@
         imagepreviewbase.style.left = "0%";
         document.body.style.overflowY = "hidden";
         setTimeout(() => {
-          imagepreviewbase.style.backgroundColor = "var(--opacity-bg)";
+          imagepreviewbase.style.backgroundColor = "var(--opacity-color)";
           imagepreviewbase.style.backdropFilter = "blur(5px)";
         },340);
       };
       function closeImgPreview() {
-        imagepreviewbase.style.backgroundColor = "var(--transparent)";
+        imagepreviewbase.style.backgroundColor = "transparent";
         imagepreviewbase.style.backdropFilter = "blur(0px)";
         setTimeout(() => {
           imagepreviewbase.style.left = "-100%";
