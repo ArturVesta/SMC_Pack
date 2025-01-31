@@ -881,16 +881,20 @@
         <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Events/00017925.png">
       </div>
       <div id="aac" class="tab-content-avatars">
-        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/a.gif">
-        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/b.gif">
-        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/c.gif">
-        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/d.gif">
-        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/e.gif">
-        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/f.gif">
-        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/g.gif">
-        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/h.gif">
-        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/i.gif">
-        <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Animated/j.gif">
+        <img onclick="showImageGif(this);" class="avatar" src="index_data/avatars/Animated/a.gif">
+        <img onclick="showImageGif(this);" class="avatar" src="index_data/avatars/Animated/b.gif">
+        <img onclick="showImageGif(this);" class="avatar" src="index_data/avatars/Animated/c.gif">
+        <img onclick="showImageGif(this);" class="avatar" src="index_data/avatars/Animated/d.gif">
+        <img onclick="showImageGif(this);" class="avatar" src="index_data/avatars/Animated/e.gif">
+        <img onclick="showImageGif(this);" class="avatar" src="index_data/avatars/Animated/f.gif">
+        <img onclick="showImageGif(this);" class="avatar" src="index_data/avatars/Animated/g.gif">
+        <img onclick="showImageGif(this);" class="avatar" src="index_data/avatars/Animated/h.gif">
+        <img onclick="showImageGif(this);" class="avatar" src="index_data/avatars/Animated/i.gif">
+        <img onclick="showImageGif(this);" class="avatar" src="index_data/avatars/Animated/j.gif">
+        <img onclick="showImageGif(this);" class="avatar" src="index_data/avatars/Animated/k.gif">
+        <img onclick="showImageGif(this);" class="avatar" src="index_data/avatars/Animated/l.gif">
+        <img onclick="showImageGif(this);" class="avatar" src="index_data/avatars/Animated/m.gif">
+        <img onclick="showImageGif(this);" class="avatar" src="index_data/avatars/Animated/n.gif">
       </div>
       <div id="aad" class="tab-content-avatars">
         <img onclick="showImage(this);" class="avatar" src="index_data/avatars/Other/00000121.png">
@@ -989,17 +993,41 @@
         <button id="downButton">Download Image</button>
       </div>
     </div>
+    <div id="imagepreviewbasegif" class="image-display">
+      <span id="closePreviewgif" onclick="closeImgPreviewGif();">X</span>
+      <img id="expandedImgGif">
+      <div class="previwe-image-conltoller">
+        <button id="copyButtonGif">Copy Gif</button>
+        <button id="downButtonGig">Download Gif</button>
+      </div>
+    </div>
     <script>
       // Locator
       const ex0 = document.getElementById("expandedImg").src;
-      const ex1 = document.getElementById("expandedImg");
+      const ex1 = document.getElementById("expandedImgGif").src;
+      const ex2 = document.getElementById("expandedImg");
+      const ex3 = document.getElementById("expandedImgGif");
     </script>
     <script>
       const nums = ["0","1","2","3","4","5","6","7","8","9"];
+    </script>
+    <script>
       document.getElementById("downButton").addEventListener('click', function() {
         const link = document.createElement('a');
         link.href = ex0;
         link.download = nums[Math.floor(Math.random() * nums.length)] + nums[Math.floor(Math.random() * nums.length)] + nums[Math.floor(Math.random() * nums.length)] + ".png";
+        link.style.display = "none";
+        link.target = "_blank";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+    </script>
+    <script>
+      document.getElementById("downButtonGig").addEventListener('click', function() {
+        const link = document.createElement('a');
+        link.href = ex1;
+        link.download = nums[Math.floor(Math.random() * nums.length)] + nums[Math.floor(Math.random() * nums.length)] + nums[Math.floor(Math.random() * nums.length)] + ".gif";
         link.style.display = "none";
         link.target = "_blank";
         document.body.appendChild(link);
@@ -1062,7 +1090,7 @@
             const blob = await fetch(image.src).then(r => r.blob());
             await navigator.clipboard.write([
               new ClipboardItem({
-                blob
+                "image/png": blob
               })
             ]);
             copyButton.textContent = 'Copied!';
@@ -1078,9 +1106,32 @@
       });
     </script>
     <script>
+      const copyButtonGif = document.getElementById('copyButtonGif');
+      copyButtonGif.addEventListener('click', async () => {
+        const image = document.getElementById("expandedImgGif");
+          try {
+            const blob = await fetch(image.src).then(r => r.blob());
+            await navigator.clipboard.write([
+              new ClipboardItem({
+                "image/gif": blob
+              })
+            ]);
+            copyButtonGif.textContent = 'Copied!';
+            setTimeout(() => {
+              copyButtonGif.textContent = 'Copy Gif';
+            }, 1000);
+          } catch (err) {
+            copyButtonGif.textContent = 'Error!, Failed to copy: ' + err;
+            setTimeout(() => {
+              copyButtonGif.textContent = 'Copy Gif';
+            }, 5000);
+          }
+      });
+    </script>
+    <script>
       function showImage(imgs) {
         var imagepreviewbase = document.getElementById("imagepreviewbase");
-        ex1.src = imgs.src;
+        ex2.src = imgs.src;
         imagepreviewbase.style.left = "0%";
         document.body.style.overflowY = "hidden";
         setTimeout(() => {
@@ -1089,6 +1140,26 @@
         },340);
       };
       function closeImgPreview() {
+        var imagepreviewbase = document.getElementById("imagepreviewbase");
+        imagepreviewbase.style.backgroundColor = "transparent";
+        imagepreviewbase.style.backdropFilter = "blur(0px)";
+        setTimeout(() => {
+          imagepreviewbase.style.left = "-100%";
+          document.body.style.overflowY = "auto";
+        },340);
+      };
+      function showImageGif(gifs) {
+        var imagepreviewbase = document.getElementById("imagepreviewbasegif");
+        ex3.src = gifs.src;
+        imagepreviewbase.style.left = "0%";
+        document.body.style.overflowY = "hidden";
+        setTimeout(() => {
+          imagepreviewbase.style.backgroundColor = "var(--opacity-color)";
+          imagepreviewbase.style.backdropFilter = "blur(5px)";
+        },340);
+      };
+      function closeImgPreview() {
+        var imagepreviewbase = document.getElementById("imagepreviewbasegif");
         imagepreviewbase.style.backgroundColor = "transparent";
         imagepreviewbase.style.backdropFilter = "blur(0px)";
         setTimeout(() => {
