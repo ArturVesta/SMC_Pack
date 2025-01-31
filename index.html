@@ -21,6 +21,7 @@
         --box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.8);
         --subbg: #1b1d2a;
         --opacity-bg: rgba(0,0,0,0.7);
+        --alert-shadow: #D10A0A93;
       }
       * {
         font-family: Helvetica, Arial, sans-serif;
@@ -203,13 +204,16 @@
         height: 100%;
         display: block;
         overflow: hidden;
-        z-index: 4;
+        z-index: 2;
         background: var(--transparent);
         backdrop-filter: blur(0px);
       }
       #expandedImg,
       #expandedImg:hover,
-      #expandedImg:focus {
+      #expandedImg:focus,
+      #expandedImgGif,
+      #expandedImgGif:hover,
+      #expandedImgGif:focus {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -222,7 +226,8 @@
         margin: auto;
         border-radius: 0px !important;
       }
-      #closePreview {
+      #closePreview,
+      #closePreviewgif {
         width: auto;
         position: absolute;
         text-align: center;
@@ -240,7 +245,8 @@
         color: var(--color);
         border: solid 2px var(--border);
       }
-      #closePreview:hover {
+      #closePreview:hover,
+      #closePreviewgif:hover {
         color: var(--subcolor) !important;
         background: var(--header-bg) !important;
       }
@@ -270,6 +276,26 @@
         color: var(--subcolor) !important;
         background: var(--header-bg) !important;
       }
+      #errorAlert {
+        position: fixed;
+        bottom: -100%;
+        transform: scale(0,0.1);
+        width: 100%;
+        height: auto;
+        text-align: center;
+        padding: 30px 0px;
+        background-image: url('error.png');
+        background-size: 100% auto;
+        background-position: center center;
+        color: var(--import-error);
+        font-size: 25px;
+        z-index: 3;
+        box-shadow: 0px 0px 10px var(--alert-shadow);
+        transition: 0.6s;
+        -o-transition: 0.6s;
+        -moz-transition: 0.6s;
+        -webkit-transition: 0.6s;
+      }
       @media only screen and (max-width: 500px) {
         .img-frame {
           width: 100%;
@@ -285,6 +311,11 @@
           width: 95%;
           display: block;
           float: none;
+        }
+        #errorAlert {
+          padding: 15px 20px;
+          font-size: 17px;
+          background-size: auto 100%;
         }
       }
     </style>
@@ -950,40 +981,6 @@
       </div>
     </div>
     <div id="c" class="tab-content"></div>
-    <script>
-      const wallpapersNames = [
-        "00000226","00000359","00000392","00000419","00000704","00000746","00000794","00000915","00001173","00001352","00009527",
-        "00001437","00001517","00001540","00001547","00001690","00001705","00001786","00001846","00002235","00002372","00002427",
-        "00002947","00002998","00003059","00003415","00003418","00003594","00003787","00003850","00003943","00004022","00004206",
-        "00004445","00004490","00004636","00004671","00004745","00004858","00005463","00005521","00005569","00005626","00005828",
-        "00005876","00005889","00005907","00006043","00006069","00006122","00006189","00006240","00006416","00006452","00006456",
-        "00006525","00006597","00006728","00006905","00006906","00006998","00007050","00007125","00007153","00007370","00007470",
-        "00007529","00007854","00007914","00007934","00008138","00008148","00008157","00008577","00009103","00009158","00009159",
-        "00009576","00009631","00009743","00009758","00009886","00009889","00009948","00009988","00010021","00010088","00010354",
-        "00010370","00010445","00010481_0","00010499","00010565","00010614","00010654","00010655","00010725","00010909","00010969",
-        "00011089","00011122","00011166","00011168","00011227","00011699","00011740","00011855","00012124","00012219","00012236",
-        "00012395","00012395_0","00012482","00012515","00012548","00012570","00012896","00012897","00012981","00013124","00013278",
-        "00013355","00013380","00013678","00013766","00013950","00013992","00013995","00014727","00014860","00015153","00015158",
-        "00015190","00015249","00015441","00015730","00015765","00016139","00016285","00016482","00016501","00016667","00016796_0",
-        "00016807","00016880","00016884","00016939","00016954","00016987","00016988","00017100","00017127","00017245","00017354",
-        "00017432","00017796","00018206","00018294","00018933","00019066","00020013","00020233","00021106"
-      ];
-      function loadWallpapers() {
-        var locate = "index_data/Wallpapers/"
-        for (var i = 0; i < wallpapersNames.length; i++) {
-          const content = document.getElementById("c");
-          const frame = document.createElement("div");
-          const image = document.createElement("img");
-          frame.className = "img-frame";
-          image.className = "wallpaper";
-          image.src = locate + wallpapersNames[i] + ".png";
-          content.appendChild(frame);
-          frame.appendChild(image);
-          image.onclick = function(){showImage(this)};
-        }
-      }
-      loadWallpapers();
-    </script>
 
     <div id="imagepreviewbase" class="image-display">
       <span id="closePreview" onclick="closeImgPreview();">X</span>
@@ -1001,6 +998,7 @@
         <button id="downButtonGig">Download Gif</button>
       </div>
     </div>
+    <div id="errorAlert">...</div>
     <script>
       // Locator
       const ex0 = document.getElementById("expandedImg").src;
@@ -1035,7 +1033,40 @@
         document.body.removeChild(link);
       });
     </script>
-
+    <script>
+      const wallpapersNames = [
+        "00000226","00000359","00000392","00000419","00000704","00000746","00000794","00000915","00001173","00001352","00009527",
+        "00001437","00001517","00001540","00001547","00001690","00001705","00001786","00001846","00002235","00002372","00002427",
+        "00002947","00002998","00003059","00003415","00003418","00003594","00003787","00003850","00003943","00004022","00004206",
+        "00004445","00004490","00004636","00004671","00004745","00004858","00005463","00005521","00005569","00005626","00005828",
+        "00005876","00005889","00005907","00006043","00006069","00006122","00006189","00006240","00006416","00006452","00006456",
+        "00006525","00006597","00006728","00006905","00006906","00006998","00007050","00007125","00007153","00007370","00007470",
+        "00007529","00007854","00007914","00007934","00008138","00008148","00008157","00008577","00009103","00009158","00009159",
+        "00009576","00009631","00009743","00009758","00009886","00009889","00009948","00009988","00010021","00010088","00010354",
+        "00010370","00010445","00010481_0","00010499","00010565","00010614","00010654","00010655","00010725","00010909","00010969",
+        "00011089","00011122","00011166","00011168","00011227","00011699","00011740","00011855","00012124","00012219","00012236",
+        "00012395","00012395_0","00012482","00012515","00012548","00012570","00012896","00012897","00012981","00013124","00013278",
+        "00013355","00013380","00013678","00013766","00013950","00013992","00013995","00014727","00014860","00015153","00015158",
+        "00015190","00015249","00015441","00015730","00015765","00016139","00016285","00016482","00016501","00016667","00016796_0",
+        "00016807","00016880","00016884","00016939","00016954","00016987","00016988","00017100","00017127","00017245","00017354",
+        "00017432","00017796","00018206","00018294","00018933","00019066","00020013","00020233","00021106"
+      ];
+      function loadWallpapers() {
+        var locate = "index_data/Wallpapers/"
+        for (var i = 0; i < wallpapersNames.length; i++) {
+          const content = document.getElementById("c");
+          const frame = document.createElement("div");
+          const image = document.createElement("img");
+          frame.className = "img-frame";
+          image.className = "wallpaper";
+          image.src = locate + wallpapersNames[i] + ".png";
+          content.appendChild(frame);
+          frame.appendChild(image);
+          image.onclick = function(){showImage(this)};
+        }
+      }
+      loadWallpapers();
+    </script>
     <script>
       function openPlayer(evt, playerName) {
         var ti, tabcontent, tablinks;
@@ -1108,24 +1139,25 @@
     <script>
       const copyButtonGif = document.getElementById('copyButtonGif');
       copyButtonGif.addEventListener('click', async () => {
-        const image = document.getElementById("expandedImgGif");
-          try {
-            const blob = await fetch(image.src).then(r => r.blob());
-            await navigator.clipboard.write([
-              new ClipboardItem({
-                "image/gif": blob
-              })
-            ]);
-            copyButtonGif.textContent = 'Copied!';
-            setTimeout(() => {
-              copyButtonGif.textContent = 'Copy Gif';
-            }, 1000);
-          } catch (err) {
-            copyButtonGif.textContent = 'Error!, Failed to copy: ' + err;
-            setTimeout(() => {
-              copyButtonGif.textContent = 'Copy Gif';
-            }, 5000);
-          }
+        document.getElementById("errorAlert").style.bottom = "30px";
+        document.getElementById("errorAlert").innerHTML = "ERROR, Script for copy animated gifs is in progress..." + "<br>" + "While use image context menu that popup when focus or right clicking with mouse.";
+        setTimeout(() => {
+          document.getElementById("errorAlert").style.transform = "scale(1,0.1)";
+          document.getElementById("errorAlert").style.color = "var(--color)";
+        },700);
+        setTimeout(() => {
+          document.getElementById("errorAlert").style.transform = "scale(1,1)";
+        },1400);
+        setTimeout(() => {
+          document.getElementById("errorAlert").style.transform = "scale(1,0.1)";
+          document.getElementById("errorAlert").style.color = "transparet";
+        },6000);
+        setTimeout(() => {
+          document.getElementById("errorAlert").style.transform = "scale(0,0.1)";
+        },6700);
+        setTimeout(() => {
+          document.getElementById("errorAlert").innerHTML = "";
+        },7400);
       });
     </script>
     <script>
@@ -1158,7 +1190,7 @@
           imagepreviewbase.style.backdropFilter = "blur(5px)";
         },340);
       };
-      function closeImgPreview() {
+      function closeImgPreviewGif() {
         var imagepreviewbase = document.getElementById("imagepreviewbasegif");
         imagepreviewbase.style.backgroundColor = "transparent";
         imagepreviewbase.style.backdropFilter = "blur(0px)";
