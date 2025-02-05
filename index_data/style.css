@@ -226,7 +226,7 @@ img.avatar {
   width: auto;
   position: absolute;
   text-align: center;
-  top: 10px;
+  top: 25px;
   right: 10px;
   border-radius: 10px;
   cursor: pointer;
@@ -343,6 +343,10 @@ img.avatar {
   font-size: 22px;
   border-bottom: solid 2px var(--color);
 }
+#subclosePreview,
+#subclosePreviewgif {
+  display: none;
+}
 @media only screen and (max-width: 500px) {
   .img-frame {
     width: 100%;
@@ -372,5 +376,13 @@ img.avatar {
   #expandedImgGif:hover,
   #expandedImgGif:focus {
     max-height: 100%;
+  }
+  #closePreview,
+  #closePreviewgif {
+    display: none;
+  }
+  #subclosePreview,
+  #subclosePreviewgif {
+    display: block;
   }
 }
