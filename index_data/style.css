@@ -379,7 +379,7 @@ img.avatar {
   }
   #closePreview,
   #closePreviewgif {
-    display: none;
+    display: none !important;
   }
   #subclosePreview,
   #subclosePreviewgif {
