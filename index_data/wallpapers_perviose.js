@@ -14,7 +14,7 @@ function wallBack() {
     if(ex2.src === location + listWallpapers[0] + format) {
       document.getElementById("prevBtn").style.display = "none";
     }else
-    if(ex2.src === location + listWallpapers[210] + format) {
+    if(ex2.src === location + listWallpapers[211] + format) {
       document.getElementById("nextBtn").style.display = "none";
     }else{
       document.getElementById("prevBtn").style.display = "block";
@@ -38,7 +38,7 @@ function wallNext() {
     if(ex2.src === location + listWallpapers[0] + format) {
       document.getElementById("prevBtn").style.display = "none";
     }else
-    if(ex2.src === location + listWallpapers[210] + format) {
+    if(ex2.src === location + listWallpapers[211] + format) {
       document.getElementById("nextBtn").style.display = "none";
     }else{
       document.getElementById("prevBtn").style.display = "block";
