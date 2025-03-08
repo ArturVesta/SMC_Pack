@@ -1,6 +1,4 @@
 function showImage(imgs) {
-  var location = "index_data/Wallpapers/";
-  var format = ".png";
   ex2.src = imgs.src;
   imagepreviewbase.style.left = "0%";
   document.body.style.overflowY = "hidden";
@@ -9,17 +7,17 @@ function showImage(imgs) {
     imagepreviewbase.style.backgroundColor = "var(--opacity-color)";
     imagepreviewbase.style.backdropFilter = "blur(5px)";
   },340);
-  for(var i = 0; i < listWallpapers.length; i++) {
-    if(ex2.src === location + listWallpapers[0] + format) {
-      document.getElementById("prevBtn").style.display = "none";
-    }else
-    if(ex2.src === location + listWallpapers[222] + format) {//-1
-      document.getElementById("nextBtn").style.display = "none";
-    }else{
-      document.getElementById("prevBtn").style.display = "block";
-      document.getElementById("nextBtn").style.display = "block";
-    };
-  }
+  if(document.getElementById("counts").innerHTML === "0") {
+    document.getElementById("prevBtn").style.display = "none";
+    document.getElementById("nextBtn").style.display = "block";
+  }else
+  if(document.getElementById("counts").innerHTML === "222") {
+    document.getElementById("nextBtn").style.display = "none";
+    document.getElementById("prevBtn").style.display = "block";
+  }else{
+    document.getElementById("prevBtn").style.display = "block";
+    document.getElementById("nextBtn").style.display = "block";
+  };
 };
 function closeImgPreview() {
   var imagepreviewbase = document.getElementById("imagepreviewbase");
