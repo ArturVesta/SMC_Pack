@@ -1,12 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404</title>
-</head>
-<body>
-    <h1>Sorry</h1><h3>This web-page is deleted and in progres of full changes...</h3>
-    <div>Thanks: MNTS</div>
-</body>
+<html lang="none">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>SMC Pack DC</title>
+    <link rel="stylesheet" href="index_data/style.css">
+    <link rel="stylesheet" href="index_data/style_main.css">
+    <script src="index_data/variables.js"></script>
+    <style>
+      p {
+        margin: 0;
+        padding: 5px 0px;
+        border-top: solid 1px var(--border);
+        border-bottom: solid 1px var(--border);
+      }
+      h5 {
+        width: 100%;
+        padding: 5px 0;
+        margin: 0;
+        text-align: center;
+        border-top: solid 2px var(--border);
+        border-bottom: solid 1px var(--border);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div id="title"></div>
+      <div id="plustitle" style="opacity:1;">Pack<span class="spt">DC</span></div>
+      <span id="btnclosewindows" style="margin-top:-52px;">X</span>
+    </header>
+    <div id="main">
+      <button id="btnlocatestickers">Open Stickers</button>
+      <button id="btnlocateavatars">Open Avatars</button>
+      <button id="btnlocatewallpapers">Open Wallpapers</button>
+      <iframe id="iStickers" src="index_stickers.htm" frameborder="0" style="right:-100%;"></iframe>
+      <iframe id="iAvatars" src="index_avatars.htm" frameborder="0" style="right:-100%;"></iframe>
+      <iframe id="iWallpapers" src="index_wallpapers.htm" frameborder="0" style="right:-100%;"></iframe>
+      <div id="tipstable" class="tipscontent">
+        <h5>Tips</h5>
+        <p><strong>»</strong> Hovering with cursor or pressing on previewed image or in list images will add shadow around image.</p>
+      </div>
+    </div>
+    <div id="adsContainer">
+      <span>AD: MNTS</span>
+      <div id="adsLogo">FREE</div>
+      <div id="adsTitle">Snake Mecha Collector</div>
+      <div id="adsContext">Classic Snake Game with SMC Styles.</div>
+      <div id="adsOpen"><div>Play Now!</div><div>Windows | Android | MacOs/iPhone/iPad</div></div>
+      <script>
+        document.getElementById("adsOpen").addEventListener('click', function() {
+          window.open('https://arturvesta.github.io/mnts.snakegame.smc/','blank_')
+        });
+      </script>
+    </div>
+    <script src="index_data/Scripts_main/open_avatars.js"></script>
+    <script src="index_data/Scripts_main/open_stickers.js"></script>
+    <script src="index_data/Scripts_main/open_wallpapers.js"></script>
+    <script src="index_data/wndows_close.js"></script>
+    <script src="index_data/errors.js"></script>
+    <script>
+      window.onerror = function() {
+        unknownError();
+      }
+    </script>
+  </body>
 </html>

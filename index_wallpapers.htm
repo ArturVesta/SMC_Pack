@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="none">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>SMC Gallery</title>
+    <link rel="stylesheet" href="index_data/style.css">
+    <link rel="stylesheet" href="index_data/style_windows.css">
+    <style>
+      img {
+        max-width: 60%;
+        height: auto;
+        margin: 2px auto;
+      }
+      img:hover {
+        filter: drop-shadow(0px 0px 6px var(--background));
+      }
+      .content {
+        flex-direction: column;
+      }
+      #pagination {
+        position: relative;
+        width: 100%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        margin-bottom: 55px;
+      }
+      .pagination {
+        width: 28px;
+        height: 18px;
+        border-radius: 10px;
+        padding: 6px 0px;
+        margin: 5px;
+        color: var(--color);
+        background-color: var(--background);
+        border: solid 2px var(--border);
+        display: inline-block;
+        text-align: center;
+        font-size: 18px;
+        filter: drop-shadow(0px 0px 6px var(--border));
+        cursor: pointer;
+      }
+      .pagination:hover {
+        color: var(--subcolor);
+        background-color: var(--subbg);
+        border: solid 2px var(--subcolor);
+        filter: drop-shadow(0px 0px 6px var(--subcolor));
+      }
+      .pagination.active {
+        color: var(--interact-color);
+        background-color: var(--border);
+        border: solid 2px var(--interact-color);
+        filter: drop-shadow(0px 0px 6px var(--interact-color));
+      }
+      #imagesSlist {
+        padding-bottom: 55px;
+      }
+      #expandedImg {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        max-width: 100%;
+        max-height: 80%;
+        display: block;
+        border: none;
+        margin: auto;
+        border-radius: 0px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="categories" id="categories">
+      <button class="categore" id="imagesCategore" onclick="openContent(event, 'imagesSlist')">Images</button>
+      <button class="categore" id="videoCategore" onclick="openContent(event, 'videoSlist')">Videos</button>
+    </div>
+    <div class="content" id="imagesSlist"></div>
+    <div id="pagination"></div>
+    <div class="content" id="videoSlist"></div>
+
+    <div id="imagepreviewbase" class="image-display">
+      <span id="closePreview" onclick="closeImgPreview();">X</span>
+      <span id="copyButton">X</span>
+      <span id="downButton">X</span>
+      <img id="expandedImg">
+    </div>
+    <div id="imagepreviewbasevid" class="image-display">
+      <span id="closePreviewvid" onclick="closeImgPreviewVid();">X</span>
+      <span id="copyButtonVid">X</span>
+      <span id="downButtonVid">X</span>
+      <video id="expandedImgVid"></video>
+    </div>
+
+    <script src="index_data/scripts_windows/locator.js"></script>
+    <input type="button" id="vartime" style="display:none;" value="">
+    <script src="index_data/scripts_windows/preview_png.js"></script>
+    <script src="index_data/scripts_windows/preview_vid.js"></script>
+    <script src="index_data/scripts_windows/time.js"></script>
+    <script src="index_data/scripts_windows/download_png.js"></script>
+    <script src="index_data/scripts_windows/download_vid.js"></script>
+    <script src="index_data/scripts_windows/copy_png.js"></script>
+    <script src="index_data/scripts_windows/copy_vid.js"></script>
+    <script src="index_data/scripts_windows/tabs.js"></script>
+
+    <script src="index_data/Scripts_wallpapers/wallpapers_images_loader.js"></script>
+    <!--script src="index_data/Scripts_wallpapers/wallpapers_videos_loader.js"></script-->
+    <script>
+      document.getElementById("imagesCategore").click();
+      document.getElementById("num1").classList.add("active");
+    </script>
+  </body>
+</html>
