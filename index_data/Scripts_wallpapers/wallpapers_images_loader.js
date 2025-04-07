@@ -72,7 +72,7 @@ function displayWallpapers(page) {
 }
 
 function displayPagination() {
-  const pagination = document.getElementById("pagination");
+  const pagination = document.getElementById("imgpagination");
   pagination.innerHTML = ""; // Clear existing buttons
 
   const totalPages = Math.ceil(wallpapers.length / wallpapersPerPage);
