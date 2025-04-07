@@ -1,5 +1,5 @@
 const listSilver = [
-"00005085","00005488"
+"0000024E","00005085","00005488"
 ];
 function loadSilver() {
   for(var i = 0; i < listSilver.length; i++) {

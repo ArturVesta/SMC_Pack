@@ -1,5 +1,5 @@
 const listRED = [
-"00015950"
+"0000024A","0000024E","00015950"
 ];
 function loadRED() {
   for(var i = 0; i < listRED.length; i++) {

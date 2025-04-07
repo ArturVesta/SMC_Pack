@@ -1,5 +1,5 @@
 const listJiu = [
-"00005529","00014876"
+"0000024E","00005529","00014876"
 ];
 function loadJiu() {
   for(var i = 0; i < listJiu.length; i++) {
