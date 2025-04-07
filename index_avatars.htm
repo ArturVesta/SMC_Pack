@@ -25,6 +25,7 @@
       <button class="categore" id="EventsMCategore" onclick="openContent(event, 'EventsMSlist')">Mecha Events</button>
       <button class="categore" id="pDefCategore" onclick="openContent(event, 'pDefSlist')">Pilot Default</button>
       <button class="categore" id="mDefCategore" onclick="openContent(event, 'mDefSlist')">Mecha Default</button>
+      <button class="categore" id="aiCategore" onclick="openContent(event, 'AISlist')">AI</button>
     </div>
     <div class="content" id="OtherSlist"></div>
     <div class="content" id="BoundSlist"></div>
@@ -33,6 +34,7 @@
     <div class="content" id="EventsMSlist"></div>
     <div class="content" id="pDefSlist"></div>
     <div class="content" id="mDefSlist"></div>
+    <div class="content" id="AISlist"></div>
 
     <div id="imagepreviewbase" class="image-display">
       <span id="closePreview" onclick="closeImgPreview();">X</span>
@@ -65,6 +67,7 @@
     <script src="index_data/Scripts_avatars/avatar_mecha_default_loader.js"></script>
     <script src="index_data/Scripts_avatars/avatar_pilot_events_loader.js"></script>
     <script src="index_data/Scripts_avatars/avatar_mecha_events_loader.js"></script>
+    <script src="index_data/Scripts_avatars/avatar_ai_loader.js"></script>
     <script>
       window.addEventListener('load', function() {
         loadOther();

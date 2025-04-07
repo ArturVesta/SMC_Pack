@@ -19,14 +19,16 @@
       .content {
         flex-direction: column;
       }
-      #pagination {
+      #imgpagination,
+      #vidpagination,
+      #aipagination {
         position: relative;
         width: 100%;
-        display: inline-flex;
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
         margin-bottom: 55px;
+        display: none;
       }
       .pagination {
         width: 28px;
@@ -75,12 +77,16 @@
   </head>
   <body>
     <div class="categories" id="categories">
-      <button class="categore" id="imagesCategore" onclick="openContent(event, 'imagesSlist')">Images</button>
-      <button class="categore" id="videoCategore" onclick="openContent(event, 'videoSlist')">Videos</button>
+      <button class="categore" id="imagesCategore" onclick="openContent(event, 'imagesSlist');openPings(event, 'imgpagination');">Images</button>
+      <button class="categore" id="videoCategore" onclick="openContent(event, 'videoSlist');openPings(event, 'vidpagination');">Videos</button>
+      <button class="categore" id="videoCategore" onclick="openContent(event, 'AISlist');openPings(event, 'aipagination');">AI</button>
     </div>
     <div class="content" id="imagesSlist"></div>
-    <div id="pagination"></div>
+    <div id="imgpagination" class="paginationcontainer"></div>
     <div class="content" id="videoSlist"></div>
+    <div id="vidpagination" class="paginationcontainer"></div>
+    <div class="content" id="AISlist"></div>
+    <div id="aipagination" class="paginationcontainer"></div>
 
     <div id="imagepreviewbase" class="image-display">
       <span id="closePreview" onclick="closeImgPreview();">X</span>
@@ -105,12 +111,15 @@
     <script src="index_data/scripts_windows/copy_png.js"></script>
     <script src="index_data/scripts_windows/copy_vid.js"></script>
     <script src="index_data/scripts_windows/tabs.js"></script>
+    <script src="index_data/scripts_wallpapers/pagination_tabs.js"></script>
 
     <script src="index_data/Scripts_wallpapers/wallpapers_images_loader.js"></script>
     <!--script src="index_data/Scripts_wallpapers/wallpapers_videos_loader.js"></script-->
+    <script src="index_data/Scripts_wallpapers/wallpapers_ai_loader.js"></script>
     <script>
       document.getElementById("imagesCategore").click();
       document.getElementById("num1").classList.add("active");
+      document.getElementById("numAI1").classList.add("active");
     </script>
   </body>
 </html>
