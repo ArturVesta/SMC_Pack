@@ -4,4 +4,5 @@ document.getElementById("btnlocateavatars").onclick = function() {
   document.getElementById("plustitle").style.opacity = "0";
   btnClose.style.marginTop = "0%";
   btnClose.style.borderBottom = "none";
+  document.body.style.overflowY = "hidden";
 }

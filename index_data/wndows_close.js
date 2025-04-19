@@ -17,4 +17,5 @@ document.getElementById("btnclosewindows").onclick = function() {
   btnClose.style.borderBottom = "solid 2px var(--border)";
   btnClose.style.marginTop = "-52px";
   document.getElementById("plustitle").style.opacity = "1";
+  document.body.style.overflowY = "auto";
 }
